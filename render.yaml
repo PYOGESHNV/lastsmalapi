@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: smallspring
+    env: java
+    plan: free
+    buildCommand: ./render-build.sh
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 20
