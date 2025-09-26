@@ -1,10 +1,10 @@
 services:
   - type: web
     name: smallspring
-    env: java
+    env: docker
     plan: free
     buildCommand: ./render-build.sh
-    startCommand: java -jar target/*.jar
+    startCommand: java -jar target/spring-login-0.0.1-SNAPSHOT.jar
     envVars:
       - key: JAVA_VERSION
-        value: 20
+        value: "24"
