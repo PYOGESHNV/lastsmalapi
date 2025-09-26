@@ -20,7 +20,8 @@
     </parent>
 
     <properties>
-        <java.version>20</java.version>
+        <!-- Updated Java version -->
+        <java.version>24</java.version>
     </properties>
 
     <dependencies>
