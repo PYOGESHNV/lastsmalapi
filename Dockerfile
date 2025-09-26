@@ -1,24 +1,22 @@
-# Use Eclipse Temurin 24 JDK
+# Use Eclipse Temurin JDK 24 as base image
 FROM eclipse-temurin:24-jdk
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Install Maven
-RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
+# Install Maven and clean apt caches
+RUN apt-get update && \
+    apt-get install -y maven && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy project files
+# Copy project files into container
 COPY . .
 
-# Build the project
-RUN ./render-build.sh
+# Build the Spring Boot app with Maven
+RUN mvn clean package -DskipTests
 
-# Expose Spring Boot default port
+# Expose port the Spring Boot app will run on
 EXPOSE 8080
 
-# Set environment variables (optional)
-ENV JAVA_VERSION=24
-ENV SPRING_PROFILES_ACTIVE=prod
-
-# Run the Spring Boot jar
-CMD ["java", "-jar", "target/spring-login-0.0.1-SNAPSHOT.jar"]
+# Run the Spring Boot app
+ENTRYPOINT ["java", "-jar", "target/your-app-name.jar"]
